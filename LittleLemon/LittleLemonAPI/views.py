@@ -153,7 +153,7 @@ def order_view(request):
                 user_order.total += order_item.price
                 order_item.save()
             user_cart.delete()
-            return Response(status=status.HTTP_201_CREATED)
+            return Response({"detail": "Order created."},status=status.HTTP_201_CREATED)
     
     return Response(status=status.HTTP_401_UNAUTHORIZED)
 
@@ -178,15 +178,15 @@ def single_order_view(request, orderId):
                 if delivery_crew_member.groups.filter(name="Delivery crew").exists():
                     order.delivery_crew = delivery_crew_member
                 else:
-                    return Response(status=status.HTTP_400_BAD_REQUEST)
+                    return Response({"detail": "Delivery crew id is invalid."}, status=status.HTTP_400_BAD_REQUEST)
     
             order.save()
-            return Response(status=status.HTTP_200_OK)
+            return Response({"detail": "Order updated."}, status=status.HTTP_200_OK)
 
         elif request.method == 'DELETE':
             # deletes the order
             order.delete()
-            return Response(status=status.HTTP_200_OK)
+            return Response({"detail": "Order deleted."}, status=status.HTTP_200_OK)
             
     # delivery crew requests
     elif user.groups.filter(name="Delivery crew").exists():
