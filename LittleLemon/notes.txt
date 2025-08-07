@@ -1,0 +1,15 @@
+admin:
+    username: admin
+    password: lemon@123!
+
+manager:
+    username: jimmydoe
+    password: lol1234567!
+
+delivery crew:
+    username: johndoe
+    password: lol1234567!
+
+customer:
+    username: janedoe
+    password: lol1234567!
